@@ -3,6 +3,34 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Rubric Points
+
+### 1. Your code should compile.
+
+Code compiles with ```make``` and ```cmake```.
+
+### 2. The PID procedure follows what was taught in the lessons.
+
+The PID class (defined in pid.cpp and pid.h) was used to calculate the steering value of the car in the simulator. The PID gains are initialised at the start of the simulation. On every update step, ```pid.UpdateError()``` calculates the new P, I, D errors. This is then used in ```pid.CalculateSteerValue()``` to calculate the output. I also calculated the total error in ```pid.TotalError()``` although this was mainly for debugging and twiddle purposes.
+
+### 3. Describe the effect each of the P, I, D components had in your implementation.
+
+```Kp``` is the proportional component - it is the gain applied directly to the CTE. It is directly proportional to the current CTE, hence a large CTE leads to a higher steering angle (in either direction). This can lead to oscillations which are resolved by the Kd component.
+
+```Ki``` is the integral component - it is the gain applied to the total accumulated error. It is required to offset against systematic bias in the controller (as seen in a PD-controller).
+
+```Kd``` is the derivative component - it is the gain applied to the rate of the change of the CTE. It is required to avoid overshoot and oscillations (as seen in a P-controller).
+
+### 4. Describe how the final hyperparameters were chosen.
+
+This was done through manual tuning. Although if I wanted better results, I would use twiddle to fine tune the coefficients further.
+
+### 5. The vehicle must successfully drive a lap around the track.
+
+It does!
+
+---
+
 ## Dependencies
 
 * cmake >= 3.5
