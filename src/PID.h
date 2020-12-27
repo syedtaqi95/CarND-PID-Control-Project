@@ -31,6 +31,9 @@ class PID {
    */
   double TotalError();
 
+  // Calculate steering angle
+  double CalculateSteerValue();
+
  private:
   /**
    * PID Errors
@@ -38,6 +41,8 @@ class PID {
   double p_error;
   double i_error;
   double d_error;
+  double total_error;
+  double prev_cte;
 
   /**
    * PID Coefficients
